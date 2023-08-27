@@ -20,3 +20,13 @@ func GetAlbumsHandler(c *gin.Context) {
 	album := models.Albums
 	c.JSON(http.StatusOK, album)
 }
+
+func LowPriceAlbum(c *gin.Context) {
+	var LowPriceAlbum models.AlbumSlice
+	for _, album := range models.Albums {
+		if album.Price < 20.0 {
+			LowPriceAlbum = append(LowPriceAlbum, album)
+		}
+	}
+	c.JSON(http.StatusOK, LowPriceAlbum)
+}
